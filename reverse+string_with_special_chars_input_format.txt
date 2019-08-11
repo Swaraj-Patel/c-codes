@@ -1,0 +1,129 @@
+#include<bits/stdc++.h>
+using namespace std;
+//char A[10]={0};
+
+ struct Node{
+    char data;
+    struct Node *next;
+    Node(char x)
+    {
+        data='x';
+        next=NULL;
+        
+    }
+    
+};
+void reversename(int size,Node *head,char A[]);
+void pushIntoList(Node *head,int size,char A[]);
+
+void push(Node **head,char data)
+{
+    struct Node *temp=new Node(data);
+    temp->data=data;
+    temp->next=NULL;
+    if(*head==NULL)
+        *head=temp;
+        
+    else
+    {
+        Node *ptr=*head;
+        while(ptr->next!=NULL)
+        {
+            ptr=ptr->next;
+        }
+        ptr->next=temp;
+    }
+}
+
+void printlist(Node *head)
+{
+    Node *ptr=head;
+    while(ptr!=NULL)
+    {
+        cout<<ptr->data;
+        ptr=ptr->next;
+        
+    }
+}
+
+void reverse(Node *head,char A[])
+{
+    int i=0;
+    //char A[100];
+    struct Node *temp=head;
+    while(temp!=NULL)
+    {
+        if(isalpha(temp->data))
+        {
+            A[i]=temp->data;
+            i++;
+        }
+        temp=temp->next;
+        
+    }
+    //int size=sizeof(A)/sizeof(A[0]);
+    reversename(i,head,A);
+    
+    
+}
+
+void reversename(int size,Node *head,char A[])
+{
+    
+    int l=0;
+    int r=size-1;
+    while(l<r)
+    {
+        swap(A[l++],A[r--]);
+    }
+    pushIntoList(head,size,A);
+}
+
+void pushIntoList(Node *head,int size,char A[])
+{   
+    int i=0;
+    Node *temp=head;
+    
+    while(temp!=NULL)
+    {
+        if(isalpha(temp->data))
+        {
+            temp->data=A[i];
+            i++;
+        }
+        temp=temp->next;
+        
+    }
+    
+    
+}
+
+int main()
+{
+    struct Node *head=NULL;
+    int k=0,n;
+    cin>>n;
+    
+    //char str[]={'@','s','w','a','!','r','a','j'};
+    
+    while(k<n)
+    {
+        char A[100];
+        string str;    
+        cin>>str;
+        int size=str.size();
+        
+        for(int i=0;i< size;i++)
+        {
+            push(&head,str[i]);
+            
+        }
+        //printlist(head);
+        reverse(head,A);
+        printlist(head);
+        cout<<endl;
+        k++;
+        head=NULL;
+    
+    }
+}

@@ -1,0 +1,79 @@
+bool isPalindrome(Node *head)
+{
+    
+    int size=0;
+    Node *temp=head;
+    Node *fastptr=head;
+    Node *slowptr=head;
+    //Node *firstptr=head;
+    if(head==NULL)
+        return true;
+    else
+    {
+        while(temp!=NULL)
+        {
+            temp=temp->next;
+            size++;
+        }
+        
+        while(fastptr!=NULL && fastptr->next!=NULL)
+        {
+                fastptr=fastptr->next->next;
+                slowptr=slowptr->next;
+        }
+        if(size%2 != 0)
+            slowptr = slowptr->next;
+            
+        Node *current = head;
+        Node *next=NULL;
+        Node *prev=NULL;
+    
+    
+    
+        while(current!=slowptr)
+        {
+            next=current->next;
+            current->next=prev;
+            prev=current;
+            current=next;
+        }
+    
+        head = prev;
+        
+                Node *secondptr=slowptr;
+                Node *oddptr=head->next;
+                Node *firstptr=head;
+                if(size%2==0)
+                {
+                    while(secondptr!=NULL)
+                    {
+                        if(firstptr->data!=secondptr->data)
+                            return false;
+                        else
+                        {
+                        firstptr=firstptr->next;
+                        secondptr=secondptr->next;
+                        }
+                    
+                    }
+                return true;
+            }
+            else 
+            {
+                while(secondptr!=NULL)
+                {
+                    if(oddptr->data!=secondptr->data)
+                        return false;
+                    else
+                    {
+                        oddptr=oddptr->next;
+                        secondptr=secondptr->next;
+                    }
+                }
+                return true;
+            }
+        
+        
+        
+    }   //Your code here
+}

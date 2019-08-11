@@ -1,0 +1,60 @@
+#include <iostream>
+using namespace std;
+int result[50]={0};
+
+void solve(int A[],int n,int key,int k)
+{
+    int count=0,sum=0;
+    for(int i=0;i<n-1;i++)
+    {
+        for(int j=i+1;j<n;j++)
+        {
+            sum=A[i]+A[j];
+            if(sum==key)
+                count++;
+            
+        }
+        
+    }
+    result[k]=count;
+    
+}
+
+void input(int k)
+{
+    int n,key;
+    cin>>n>>key;
+    int A[n];
+	for(int i=0;i<n;i++)
+    {
+        cin>>A[i];
+	}
+	solve(A,n,key,k);
+	
+	
+    
+}
+
+
+
+
+int main() {
+    int k=0;
+	int T;
+	
+	
+	cin>>T;
+	
+	while(k<T)
+	{
+	    input(k);
+	    k++;
+	}
+	
+	
+	for(int i=0;i<T;i++)
+	{
+	    cout<<result[i]<<endl;
+	}
+	return 0;
+}

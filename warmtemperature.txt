@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+void temperature(int T[],int size)
+{   
+    int count=0,pos,key;
+    for(int i=0;i<size;i++)
+    {
+        count=1;
+         key=T[i];
+        for(int j=i+1;j<size;j++)
+        {
+            if(T[j]>key)
+            {
+                T[i]=count;
+                break;
+            }
+            else
+            {
+                count++;
+              
+            }
+            
+            T[i]=0;
+        }
+        
+    }
+    T[size-1]=0;
+    
+    /*for(int i=pos-1;i<size;i++)
+    {
+        T[i]=0;
+    }
+    */
+    for(int i=0;i<size;i++)
+    {
+        cout<<" "<<T[i];
+    }
+}
+
+int main()
+{
+    int T[]={71,72,74,75,72,73,76,73,71,70};
+    int size = sizeof(T) / sizeof(T[0]);
+    for(int i=0;i<size;i++)
+    {
+        cout<<" "<<T[i];
+    }
+    cout<<endl;
+    temperature(T,size);
+}
